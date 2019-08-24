@@ -1,11 +1,11 @@
 $(document).ready(function(){
 
-var key = "0pijohJX2NcLNNAn3O8i4AJDVzlspei8";
+var apiKey = "0pijohJX2NcLNNAn3O8i4AJDVzlspei8";
 var artists = [];
 
 function renderButtons() {
 
-    $("artist-buttons").empty();
+    $("#artist-buttons").empty();
     for (var i=0; i<artists.length; i++){
 
         var a = $("<button>");
@@ -22,10 +22,37 @@ $("#button").on("click", function(event){
     var artist = $("#artistname").val();
     artists.push(artist);
 
-    console.log(artists);
-    // addArtistName();
     renderButtons();
 });
 
+$("#artist-buttons").on("click", function() {
+
+var newButton = $(this).attr("data-name");
+
+var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+newButton + "&api_key=" + apiKey + "&limit=10";
+
+$.ajax({
+
+    url: queryURL,
+    method: "GET"
 })
 
+.then(function(response){
+    var results = response.data;
+
+    for(var i=0; i<results.length; i++){
+
+        var artistDiv = $("<artistDiv>");
+        var p = $("<p>").text("Rating: " + results[i].rating);
+        var artistImages = $("<img>")
+        artistImages.attr("src", results[i].images.fixed_height.url);
+        artistDiv.append(p);
+        artistDiv.append(artistImages);
+        $("#gifs").prepend(artistDiv);
+
+    }
+})
+
+})
+});
