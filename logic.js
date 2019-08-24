@@ -58,18 +58,31 @@ $.ajax({
 
 })
 
-$("#artist-buttons").on("click", function(){
+$("#gifs").on("click", function(){ 
 
+    // this is not the artist button I want to click. I want to click on gif
+    // so this is not $("#artist-buttons") !!!
+
+    // var state = $(this).attr("data-state");
+    // var static = $(this).attr("data-static");
+    // var animate = $(this).attr("data-animate");
+    // if (state === "static") {
+    //     $(this).attr("data-state", "animate");
+    //     $(this).attr("src", animate);
+    // } else {
+    //     $(this).attr("data-state", "static");
+    //     $(this).attr("src", static);
+    // }
     var state = $(this).attr("data-state");
     if(state === "still"){
         $(this).attr("src", $(this).data('animate'));
         $(this).attr("data-state", "animate");
     }
 
-    // else {
+    else {
 
-    //     $(this).attr("src", $(this).data('still'));
-    //     $(this).attr("data-state", "still");
-    // }
+        $(this).attr("src", $(this).data('still'));
+        $(this).attr("data-state", "still");
+    }
 })
 });
