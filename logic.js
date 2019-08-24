@@ -29,9 +29,8 @@ $("#artist-buttons").on("click", function() {
 
 var newButton = $(this).attr("data-name");
 
-var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-newButton + "&api_key=" + apiKey + "&limit=10";
-
+var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + newButton + "&api_key=" + apiKey + "&limit=10";
+// https://api.giphy.com/v1/gifs/search?q="chris+brown "&api_key=0pijohJX2NcLNNAn3O8i4AJDVzlspei8&limit=10";
 $.ajax({
 
     url: queryURL,
@@ -46,7 +45,7 @@ $.ajax({
         var artistDiv = $("<artistDiv>");
         var p = $("<p>").text("Rating: " + results[i].rating);
         var artistImages = $("<img>")
-        artistImages.attr("src", results[i].images.fixed_height.url);
+        artistImages.attr("src", results[i].images.original_still.url);
         artistDiv.append(p);
         artistDiv.append(artistImages);
         $("#gifs").prepend(artistDiv);
