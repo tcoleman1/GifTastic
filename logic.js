@@ -25,12 +25,14 @@ $("#button").on("click", function(event){
     renderButtons();
 });
 
-$("#artist-buttons").on("click", function() {
+$("#artist-buttons").on("click", ".artist", function() {
 
 var newButton = $(this).attr("data-name");
 
-var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + newButton + "&api_key=" + apiKey + "&limit=10";
+//var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + newButton + "&api_key=" + apiKey + "&limit=10";
 // https://api.giphy.com/v1/gifs/search?q="chris+brown "&api_key=0pijohJX2NcLNNAn3O8i4AJDVzlspei8&limit=10";
+
+var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + newButton + "&api_key=0pijohJX2NcLNNAn3O8i4AJDVzlspei8&limit=10"
 $.ajax({
 
     url: queryURL,
